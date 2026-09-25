@@ -3,215 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Aalyan Story ♡</title>
+<title>Aalyan Story</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    font-family: Georgia, serif;
-    background: #fff7f8;
-    color: #5d4149;
-    text-align: center;
+body{
+    background:#080607;
+    color:#eee4d7;
+    font-family:'Montserrat',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
 }
 
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    background: linear-gradient(135deg, #fff7f8, #f7dce5);
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 20% 20%,rgba(111,25,38,.16),transparent 30%),
+      radial-gradient(circle at 80% 70%,rgba(170,125,65,.08),transparent 30%);
+    z-index:10;
 }
 
-.heart {
-    font-size: 48px;
-    margin-bottom: 20px;
-    animation: heartbeat 1.6s infinite;
+h1,h2,h3{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
 }
 
-.small {
-    font-size: 13px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #a66d7d;
-    margin-bottom: 18px;
+button{
+    font-family:'Montserrat',sans-serif;
 }
 
-h1 {
-    font-size: 58px;
-    font-weight: normal;
-    color: #7c4658;
-    margin-bottom: 15px;
+/* INTRO */
+
+.intro{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    background:
+      radial-gradient(circle at center,#32151c 0%,#11090c 45%,#080607 80%);
 }
 
-.subtitle {
-    max-width: 500px;
-    font-size: 19px;
-    font-style: italic;
-    line-height: 1.7;
-    margin-bottom: 32px;
+.intro-content{
+    animation:fadeIn 2s ease;
+    padding:30px;
 }
 
-button {
-    border: none;
-    background: #9b6072;
-    color: white;
-    padding: 14px 28px;
-    border-radius: 30px;
-    font-size: 15px;
-    cursor: pointer;
-    font-family: Georgia, serif;
-    box-shadow: 0 6px 18px rgba(120,70,90,0.2);
+.tiny{
+    letter-spacing:6px;
+    text-transform:uppercase;
+    font-size:10px;
+    color:#b99b72;
+    margin-bottom:25px;
 }
 
-button:hover {
-    background: #7c4658;
+.intro h1{
+    font-size:clamp(65px,15vw,130px);
+    color:#eee0d0;
+    letter-spacing:3px;
+    line-height:.8;
 }
 
-section {
-    padding: 80px 22px;
+.intro .sub{
+    margin-top:25px;
+    color:#bba99d;
+    font-size:13px;
+    letter-spacing:3px;
 }
 
-.story {
-    background: #fffafa;
+.enter{
+    margin-top:45px;
+    background:transparent;
+    color:#c9a66d;
+    border:1px solid #80653e;
+    padding:14px 34px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:10px;
+    cursor:pointer;
+    transition:.5s;
 }
 
-h2 {
-    font-size: 36px;
-    font-weight: normal;
-    color: #7c4658;
-    margin-bottom: 18px;
+.enter:hover{
+    background:#a97d42;
+    color:#10090a;
+    box-shadow:0 0 35px rgba(169,125,66,.25);
 }
 
-.line {
-    width: 65px;
-    height: 2px;
-    background: #c98b9b;
-    margin: 0 auto 30px;
+/* GOLD LINE */
+
+.goldline{
+    width:55px;
+    height:1px;
+    background:#a9824d;
+    margin:25px auto;
 }
 
-.story-text {
-    max-width: 650px;
-    margin: auto;
-    font-size: 17px;
-    line-height: 1.9;
+/* STORY */
+
+.story{
+    min-height:100vh;
+    padding:120px 25px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:linear-gradient(#090607,#12090c,#090607);
 }
 
-.music {
-    background: #f9e3e9;
+.story-inner{
+    max-width:720px;
 }
 
-.music p {
-    margin-bottom: 20px;
-    font-style: italic;
+.label{
+    color:#a9824d;
+    letter-spacing:5px;
+    font-size:10px;
+    text-transform:uppercase;
 }
 
-audio {
-    width: 90%;
-    max-width: 420px;
+.story h2{
+    font-size:58px;
+    margin-top:18px;
 }
 
-.memories {
-    background: #fffafa;
+.story p{
+    color:#b9aaa0;
+    line-height:2;
+    font-size:14px;
 }
 
-.gallery {
-    max-width: 900px;
-    margin: 35px auto 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+/* MUSIC */
+
+.music{
+    padding:100px 25px;
+    text-align:center;
+    background:#0c0709;
+    border-top:1px solid #26191a;
+    border-bottom:1px solid #26191a;
 }
 
-.gallery img {
-    width: 100%;
-    height: 330px;
-    object-fit: cover;
-    border-radius: 18px;
-    box-shadow: 0 6px 18px rgba(100,60,70,0.15);
-    transition: transform 0.3s ease;
+.music h2{
+    font-size:48px;
 }
 
-.gallery img:hover {
-    transform: scale(1.02);
+.music-text{
+    color:#9c8b82;
+    font-size:12px;
+    margin-bottom:30px;
 }
 
-.letter {
-    background: linear-gradient(135deg, #fff5f7, #f6d8e1);
+.music button{
+    background:#a9824d;
+    color:#120a0b;
+    border:0;
+    border-radius:50px;
+    width:58px;
+    height:58px;
+    font-size:20px;
+    cursor:pointer;
+    transition:.4s;
 }
 
-.letter-box {
-    max-width: 650px;
-    margin: auto;
-    background: rgba(255,255,255,0.65);
-    padding: 35px 25px;
-    border-radius: 20px;
-    line-height: 1.9;
-    font-size: 17px;
+.music button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 30px rgba(169,130,77,.3);
 }
 
-.birthday {
-    min-height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #f6d8e1;
+/* MEMORIES */
+
+.memories{
+    padding:120px 25px;
+    background:#080607;
+    text-align:center;
 }
 
-.birthday h2 {
-    font-size: 42px;
+.memories h2{
+    font-size:58px;
 }
 
-.birthday p {
-    max-width: 550px;
-    line-height: 1.8;
-    margin: 20px auto 30px;
+.gallery{
+    max-width:850px;
+    margin:55px auto 0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
 }
 
-footer {
-    padding: 25px;
-    background: #7c4658;
-    color: white;
-    font-size: 14px;
+.photo{
+    position:relative;
+    overflow:hidden;
+    background:#160d0f;
+    border:1px solid #332326;
 }
 
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
+.photo:nth-child(1){
+    transform:rotate(-1.2deg);
+}
+
+.photo:nth-child(2){
+    transform:rotate(1deg);
+}
+
+.photo:nth-child(3){
+    transform:rotate(1.1deg);
+}
+
+.photo:nth-child(4){
+    transform:rotate(-.8deg);
+}
+
+.photo img{
+    width:100%;
+    height:390px;
+    display:block;
+    object-fit:cover;
+    filter:saturate(.8);
+    transition:1s;
+}
+
+.photo:hover img{
+    transform:scale(1.05);
+    filter:saturate(1);
+}
+
+/* LETTER */
+
+.letter{
+    min-height:100vh;
+    padding:120px 25px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+      radial-gradient(circle at center,#281117,#0b0708 65%);
+}
+
+.letter h2{
+    font-size:62px;
+}
+
+.letter-card{
+    max-width:650px;
+    padding:50px 35px;
+    border:1px solid #49302b;
+    background:rgba(25,12,15,.65);
+    margin-top:25px;
+}
+
+.letter-card p{
+    color:#c5b5a9;
+    line-height:2;
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+}
+
+/* OPEN WHEN */
+
+.open{
+    padding:120px 25px;
+    background:#090607;
+    text-align:center;
+}
+
+.open h2{
+    font-size:58px;
+}
+
+.cards{
+    max-width:850px;
+    margin:55px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.card{
+    min-height:170px;
+    border:1px solid #392426;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    cursor:pointer;
+    transition:.5s;
+    color:#bda78f;
+    letter-spacing:1px;
+    font-size:12px;
+}
+
+.card:hover{
+    border-color:#a9824d;
+    background:#160c0f;
+    transform:translateY(-5px);
+}
+
+/* END */
+
+.end{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+      radial-gradient(circle,#35151d 0%,#10080a 55%,#080607 100%);
+    padding:30px;
+}
+
+.end h2{
+    font-size:clamp(60px,12vw,110px);
+    color:#eee0d0;
+}
+
+.end p{
+    margin-top:25px;
+    color:#b5a399;
+    letter-spacing:2px;
+    font-size:11px;
+}
+
+footer{
+    padding:25px;
+    text-align:center;
+    background:#050405;
+    color:#665957;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+/* PARTICLES */
+
+.particle{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:#c5a36d;
+    border-radius:50%;
+    opacity:.5;
+    pointer-events:none;
+    animation:float 8s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
     }
-    50% {
-        transform: scale(1.15);
+    20%{opacity:.5}
+    80%{opacity:.3}
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
     }
 }
 
-@media (max-width: 600px) {
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
 
-    h1 {
-        font-size: 45px;
+@media(max-width:650px){
+
+    .gallery{
+        grid-template-columns:1fr;
+        max-width:430px;
     }
 
-    h2 {
-        font-size: 30px;
+    .photo img{
+        height:480px;
     }
 
-    .gallery {
-        grid-template-columns: 1fr;
+    .cards{
+        grid-template-columns:1fr;
+        max-width:400px;
     }
 
-    .gallery img {
-        height: 380px;
+    .story h2,
+    .memories h2,
+    .open h2{
+        font-size:48px;
+    }
+
+    .letter h2{
+        font-size:52px;
     }
 }
 </style>
@@ -219,44 +418,62 @@ footer {
 
 <body>
 
-<!-- OPENING -->
-<section class="hero">
+<!-- PARTICLES -->
+<div class="particle" style="left:10%;animation-delay:0s"></div>
+<div class="particle" style="left:25%;animation-delay:2s"></div>
+<div class="particle" style="left:45%;animation-delay:4s"></div>
+<div class="particle" style="left:65%;animation-delay:1s"></div>
+<div class="particle" style="left:85%;animation-delay:3s"></div>
 
-    <div class="heart">♡</div>
 
-    <div class="small">
-        A little story made for
+<!-- INTRO -->
+<section class="intro" id="top">
+
+    <div class="intro-content">
+
+        <div class="tiny">a little story</div>
+
+        <h1>Aalyan</h1>
+
+        <div class="goldline"></div>
+
+        <div class="sub">
+            made for one special person
+        </div>
+
+        <button class="enter"
+        onclick="document.getElementById('story').scrollIntoView()">
+            Enter the story
+        </button>
+
     </div>
-
-    <h1>Aalyan</h1>
-
-    <p class="subtitle">
-        Some people become a beautiful part of our story.
-    </p>
-
-    <button onclick="document.getElementById('story').scrollIntoView()">
-        Open Our Story ♡
-    </button>
 
 </section>
 
 
-<!-- OUR STORY -->
+<!-- STORY -->
 <section class="story" id="story">
 
-    <h2>Our Story</h2>
+    <div class="story-inner">
 
-    <div class="line"></div>
+        <div class="label">Chapter I</div>
 
-    <p class="story-text">
-        This little corner of the internet is made especially for you.
-        <br><br>
-        Some memories are too precious to simply stay in our phones.
-        They deserve a little place of their own.
-        <br><br>
-        So I made this small story...
-        just for you.
-    </p>
+        <h2>Where it all begins</h2>
+
+        <div class="goldline"></div>
+
+        <p>
+            Some people enter our lives quietly,
+            and somehow become part of the stories
+            we never want to forget.
+            <br><br>
+            This is a little place for those moments.
+            A collection of memories, feelings,
+            smiles and everything that made this story
+            worth keeping.
+        </p>
+
+    </div>
 
 </section>
 
@@ -264,36 +481,51 @@ footer {
 <!-- MUSIC -->
 <section class="music">
 
-    <h2>A Song For You ♡</h2>
+    <div class="label">our song</div>
 
-    <div class="line"></div>
+    <h2>Press play.</h2>
 
-    <p>Press play and let the story continue...</p>
+    <div class="goldline"></div>
 
-    <audio controls>
+    <div class="music-text">
+        and let the memories play with it.
+    </div>
+
+    <button id="musicBtn" onclick="toggleMusic()">▶</button>
+
+    <audio id="song">
         <source src="our-song.mp3" type="audio/mpeg">
-        Your browser does not support audio.
     </audio>
 
 </section>
 
 
-<!-- MEMORIES -->
+<!-- PHOTOS -->
 <section class="memories">
 
-    <h2>Our Memories</h2>
+    <div class="label">Chapter II</div>
 
-    <div class="line"></div>
+    <h2>Memories</h2>
+
+    <div class="goldline"></div>
 
     <div class="gallery">
 
-        <img src="c70eef40b57087fd4fc4933ca1848abe.jpg" alt="Memory 1">
+        <div class="photo">
+            <img src="c70eef40b57087fd4fc4933ca1848abe.jpg">
+        </div>
 
-        <img src="97948dc91897534bc9a5f0c0ba32ec2e.jpg" alt="Memory 2">
+        <div class="photo">
+            <img src="97948dc91897534bc9a5f0c0ba32ec2e.jpg">
+        </div>
 
-        <img src="fee4884e791d4ba01cc3f57236cfcf92.jpg" alt="Memory 3">
+        <div class="photo">
+            <img src="fee4884e791d4ba01cc3f57236cfcf92.jpg">
+        </div>
 
-        <img src="d802aa4cb5d98714194eccfc7a1db412.jpg" alt="Memory 4">
+        <div class="photo">
+            <img src="d802aa4cb5d98714194eccfc7a1db412.jpg">
+        </div>
 
     </div>
 
@@ -303,30 +535,26 @@ footer {
 <!-- LETTER -->
 <section class="letter">
 
-    <h2>A Little Letter ♡</h2>
+    <div class="label">Chapter III</div>
 
-    <div class="line"></div>
+    <h2>A little letter</h2>
 
-    <div class="letter-box">
+    <div class="goldline"></div>
+
+    <div class="letter-card">
 
         <p>
             Dear Aalyan,
             <br><br>
-
-            Today is your day, but somehow I wanted to make
-            a little something that could stay with you beyond
-            just one birthday.
+            Some things are difficult to put into words,
+            so I made this little place instead.
             <br><br>
-
-            These pictures, these words and this little page
-            are just a tiny reminder that some moments become
-            memories we never want to forget.
+            Four pictures, one song, a few memories
+            and a tiny piece of my heart.
             <br><br>
-
-            I hope this year brings you happiness, peace,
-            beautiful moments and everything your heart wishes for.
+            I hope this little story reminds you
+            how special you are.
             <br><br>
-
             Happy Birthday. ♡
         </p>
 
@@ -335,28 +563,90 @@ footer {
 </section>
 
 
-<!-- ENDING -->
-<section class="birthday">
+<!-- OPEN WHEN -->
+<section class="open">
 
-    <div class="heart">♡</div>
+    <div class="label">just because</div>
 
-    <h2>Happy Birthday, Aalyan</h2>
+    <h2>Open when...</h2>
 
-    <p>
-        Here's to another year of your story,
-        and to all the beautiful chapters still waiting to be written.
-    </p>
+    <div class="goldline"></div>
 
-    <button onclick="window.scrollTo({top:0, behavior:'smooth'})">
-        Back to the Beginning ♡
-    </button>
+    <div class="cards">
+
+        <div class="card"
+        onclick="alert('Remember: even ordinary days can hold beautiful little moments. ♡')">
+            you need a smile
+        </div>
+
+        <div class="card"
+        onclick="alert('Take a breath. You have made it through every difficult day before this one. ♡')">
+            you need some peace
+        </div>
+
+        <div class="card"
+        onclick="alert('Some memories are worth keeping forever. This is one of them. ♡')">
+            you miss this story
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- END -->
+<section class="end">
+
+    <div>
+
+        <div class="label">the end... or maybe not</div>
+
+        <h2>Happy Birthday,<br>Aalyan.</h2>
+
+        <div class="goldline"></div>
+
+        <p>
+            may your next chapter be beautiful.
+        </p>
+
+    </div>
 
 </section>
 
 
 <footer>
-    Made with love ♡
+    A little story made with love
 </footer>
+
+
+<script>
+
+const song = document.getElementById("song");
+const btn = document.getElementById("musicBtn");
+
+function toggleMusic(){
+
+    if(song.paused){
+
+        song.play();
+
+        btn.innerHTML = "Ⅱ";
+
+    }else{
+
+        song.pause();
+
+        btn.innerHTML = "▶";
+
+    }
+
+}
+
+song.addEventListener("ended", function(){
+    btn.innerHTML = "▶";
+});
+
+</script>
 
 </body>
 </html>
