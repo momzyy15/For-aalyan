@@ -2,651 +2,442 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aalyan Story</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>A Little World for Aalyan</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --black:#050405;
+  --black2:#0c0809;
+  --burgundy:#4c111d;
+  --burgundy2:#711d31;
+  --cream:#f5eee5;
+  --muted:#c8b8b0;
+  --gold:#c9a96b;
+  --line:rgba(201,169,107,.30);
 }
-
-html{
-    scroll-behavior:smooth;
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;min-height:100%;background:var(--black);color:var(--cream);font-family:"DM Sans",sans-serif}
+body{overflow:hidden}
+button,input{font:inherit}
+button{cursor:pointer}
+#app{position:relative;width:100%;height:100dvh;overflow:hidden;background:
+ radial-gradient(circle at 50% 20%,rgba(113,29,49,.18),transparent 35%),
+ linear-gradient(145deg,#030304,#0a0507 55%,#12070a)}
+.screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transform:scale(1.025);transition:opacity .65s ease,transform .75s ease,visibility .65s}
+.screen.active{opacity:1;visibility:visible;transform:scale(1)}
+.content{width:min(620px,100%);text-align:center;position:relative;z-index:3}
+.eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.serif{font-family:"Cormorant Garamond",serif}
+h1,h2,p{margin:0}
+h1{font-family:"Cormorant Garamond",serif;font-size:clamp(52px,14vw,94px);font-weight:500;line-height:.86;letter-spacing:-.035em}
+h2{font-family:"Cormorant Garamond",serif;font-size:clamp(38px,10vw,68px);font-weight:500;line-height:.95}
+.sub{color:var(--muted);font-size:14px;line-height:1.7;max-width:390px;margin:20px auto 0}
+.gold{color:var(--gold)}
+.btn{
+ border:1px solid var(--line);background:rgba(76,17,29,.55);color:var(--cream);
+ padding:14px 25px;border-radius:999px;letter-spacing:.17em;text-transform:uppercase;
+ font-size:10px;transition:.3s;box-shadow:0 0 30px rgba(113,29,49,.12)
 }
-
-body{
-    background:#080607;
-    color:#eee4d7;
-    font-family:'Montserrat',sans-serif;
-    font-weight:300;
-    overflow-x:hidden;
-}
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-      radial-gradient(circle at 20% 20%,rgba(111,25,38,.16),transparent 30%),
-      radial-gradient(circle at 80% 70%,rgba(170,125,65,.08),transparent 30%);
-    z-index:10;
-}
-
-h1,h2,h3{
-    font-family:'Cormorant Garamond',serif;
-    font-weight:400;
-}
-
-button{
-    font-family:'Montserrat',sans-serif;
-}
-
-/* INTRO */
-
-.intro{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    position:relative;
-    background:
-      radial-gradient(circle at center,#32151c 0%,#11090c 45%,#080607 80%);
-}
-
-.intro-content{
-    animation:fadeIn 2s ease;
-    padding:30px;
-}
-
-.tiny{
-    letter-spacing:6px;
-    text-transform:uppercase;
-    font-size:10px;
-    color:#b99b72;
-    margin-bottom:25px;
-}
-
-.intro h1{
-    font-size:clamp(65px,15vw,130px);
-    color:#eee0d0;
-    letter-spacing:3px;
-    line-height:.8;
-}
-
-.intro .sub{
-    margin-top:25px;
-    color:#bba99d;
-    font-size:13px;
-    letter-spacing:3px;
-}
-
-.enter{
-    margin-top:45px;
-    background:transparent;
-    color:#c9a66d;
-    border:1px solid #80653e;
-    padding:14px 34px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    font-size:10px;
-    cursor:pointer;
-    transition:.5s;
-}
-
-.enter:hover{
-    background:#a97d42;
-    color:#10090a;
-    box-shadow:0 0 35px rgba(169,125,66,.25);
-}
-
-/* GOLD LINE */
-
-.goldline{
-    width:55px;
-    height:1px;
-    background:#a9824d;
-    margin:25px auto;
-}
-
-/* STORY */
-
-.story{
-    min-height:100vh;
-    padding:120px 25px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:linear-gradient(#090607,#12090c,#090607);
-}
-
-.story-inner{
-    max-width:720px;
-}
-
-.label{
-    color:#a9824d;
-    letter-spacing:5px;
-    font-size:10px;
-    text-transform:uppercase;
-}
-
-.story h2{
-    font-size:58px;
-    margin-top:18px;
-}
-
-.story p{
-    color:#b9aaa0;
-    line-height:2;
-    font-size:14px;
-}
-
-/* MUSIC */
-
+.btn:hover,.btn:active{background:var(--burgundy2);border-color:rgba(201,169,107,.7);transform:translateY(-2px)}
+.btn.ghost{background:transparent}
+.top-note{position:absolute;top:24px;left:24px;font-family:"Cormorant Garamond";font-size:25px;color:var(--gold);opacity:.7}
 .music{
-    padding:100px 25px;
-    text-align:center;
-    background:#0c0709;
-    border-top:1px solid #26191a;
-    border-bottom:1px solid #26191a;
+ position:fixed;right:18px;top:18px;z-index:50;width:38px;height:38px;border-radius:50%;
+ border:1px solid var(--line);background:rgba(5,4,5,.65);color:var(--gold);font-size:17px
 }
+.progress{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:40;display:flex;gap:5px}
+.progress i{width:22px;height:2px;background:rgba(245,238,229,.16);transition:.4s}
+.progress i.on{background:var(--gold);box-shadow:0 0 10px rgba(201,169,107,.5)}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(201,169,107,.7);animation:float 5s linear infinite}
+@keyframes float{0%{transform:translateY(15px);opacity:0}15%{opacity:.8}85%{opacity:.25}100%{transform:translateY(-100px);opacity:0}}
 
-.music h2{
-    font-size:48px;
+.input-wrap{margin:28px auto 15px;max-width:330px}
+.name-input{
+ width:100%;padding:16px 18px;background:rgba(255,255,255,.035);border:1px solid var(--line);
+ border-radius:12px;color:var(--cream);text-align:center;outline:none;letter-spacing:.12em
 }
+.name-input:focus{border-color:var(--gold);box-shadow:0 0 25px rgba(201,169,107,.1)}
+.error{height:20px;color:#d99a9a;font-size:11px;margin-top:8px}
 
-.music-text{
-    color:#9c8b82;
-    font-size:12px;
-    margin-bottom:30px;
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
+.door{
+ min-height:190px;padding:18px 12px;border:1px solid var(--line);border-radius:16px;
+ background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(76,17,29,.28));
+ display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+ color:var(--cream);transition:.35s
 }
+.door:hover,.door:active{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 15px 50px rgba(76,17,29,.3)}
+.door-num{font-size:10px;letter-spacing:.2em;color:var(--gold)}
+.door-icon{font-family:"Cormorant Garamond";font-size:44px;color:var(--gold)}
+.door-title{font-size:10px;letter-spacing:.17em}
+.mini{font-size:11px;color:var(--muted);line-height:1.55;min-height:50px}
 
-.music button{
-    background:#a9824d;
-    color:#120a0b;
-    border:0;
-    border-radius:50px;
-    width:58px;
-    height:58px;
-    font-size:20px;
-    cursor:pointer;
-    transition:.4s;
+.modal{
+ position:fixed;inset:0;z-index:60;background:rgba(2,2,3,.84);backdrop-filter:blur(10px);
+ display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transition:.35s
 }
-
-.music button:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 30px rgba(169,130,77,.3);
+.modal.show{opacity:1;visibility:visible}
+.modal-card{
+ width:min(450px,100%);padding:38px 25px;border:1px solid var(--line);border-radius:20px;
+ background:linear-gradient(145deg,#0e080a,#17090d);text-align:center;transform:translateY(15px);transition:.4s
 }
+.modal.show .modal-card{transform:translateY(0)}
+.modal-close{position:absolute;right:20px;top:18px;border:0;background:none;color:var(--muted);font-size:22px}
 
-/* MEMORIES */
+.envelope-wrap{height:250px;display:flex;align-items:center;justify-content:center;perspective:900px;margin:10px 0 20px}
+.envelope{width:250px;height:155px;position:relative;background:#5b1726;border:1px solid var(--gold);box-shadow:0 20px 60px rgba(0,0,0,.5);transition:1s;transform-style:preserve-3d}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,transparent 49%,rgba(201,169,107,.45) 50%,transparent 51%),linear-gradient(35deg,transparent 49%,rgba(201,169,107,.25) 50%,transparent 51%)}
+.flap{position:absolute;top:0;left:0;width:0;height:0;border-left:124px solid transparent;border-right:124px solid transparent;border-top:82px solid #741e32;transform-origin:top;transition:1s;z-index:3}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-30%);z-index:4;width:38px;height:38px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);background:#3c0d18;transition:.5s}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.letter{position:absolute;left:12%;top:18px;width:76%;height:115px;background:var(--cream);color:#25151a;padding:18px 12px;font-family:"Cormorant Garamond";font-size:18px;line-height:1.15;opacity:0;transform:translateY(20px);transition:1s .25s;z-index:2}
+.envelope.open .letter{opacity:1;transform:translateY(-42px)}
 
-.memories{
-    padding:120px 25px;
-    background:#080607;
-    text-align:center;
+.game-box{width:min(420px,100%);height:330px;margin:25px auto 15px;border:1px solid var(--line);border-radius:20px;background:radial-gradient(circle at center,rgba(113,29,49,.18),transparent 65%);position:relative;overflow:hidden}
+.star{position:absolute;width:24px;height:24px;border:0;background:none;color:var(--gold);font-size:22px;padding:0;filter:drop-shadow(0 0 10px rgba(201,169,107,.7));animation:starPulse 1.2s infinite alternate}
+@keyframes starPulse{from{transform:scale(.75) rotate(0deg);opacity:.65}to{transform:scale(1.2) rotate(18deg);opacity:1}}
+.score{font-size:11px;letter-spacing:.2em;color:var(--muted)}
+#starCount{color:var(--gold)}
+
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:500px;margin:25px auto 20px}
+.photo-frame{
+ padding:8px;background:#e9dfd1;border:1px solid var(--gold);box-shadow:0 18px 45px rgba(0,0,0,.5);
+ transform:rotate(-2deg);transition:.35s;cursor:pointer;min-height:150px;display:flex;align-items:center;justify-content:center
 }
+.photo-frame:nth-child(2){transform:rotate(2.5deg);margin-top:20px}
+.photo-frame:nth-child(3){transform:rotate(1.5deg);margin-top:-5px}
+.photo-frame:nth-child(4){transform:rotate(-3deg);margin-top:16px}
+.photo-frame:hover{transform:rotate(0) scale(1.03)}
+.photo-frame img{display:block;width:100%;height:auto;max-height:230px;object-fit:contain;background:#120b0d}
+.photo-placeholder{width:100%;aspect-ratio:1/1.2;display:flex;align-items:center;justify-content:center;color:#604653;font-family:"Cormorant Garamond";font-size:28px}
+.gallery-note{font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
 
-.memories h2{
-    font-size:58px;
+.openwhen{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin:28px auto 18px;max-width:500px}
+.flip-card{height:150px;perspective:900px;cursor:pointer}
+.flip-inner{width:100%;height:100%;position:relative;transition:transform .65s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+ position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);border-radius:16px;
+ display:flex;align-items:center;justify-content:center;text-align:center;padding:18px
 }
+.flip-front{background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(76,17,29,.28));font-family:"Cormorant Garamond";font-size:21px}
+.flip-back{background:#18090e;transform:rotateY(180deg);font-size:13px;line-height:1.6;color:var(--muted)}
 
-.gallery{
-    max-width:850px;
-    margin:55px auto 0;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:22px;
+.final .content{max-width:700px}
+.final h1{font-size:clamp(58px,16vw,110px);text-shadow:0 0 35px rgba(201,169,107,.16)}
+.final-love{font-family:"Cormorant Garamond";font-size:25px;color:var(--gold);margin:20px 0 10px}
+.final-small{color:var(--muted);font-size:12px;letter-spacing:.08em}
+.replay{margin-top:28px}
+.shimmer{animation:shimmer 2.5s ease-in-out infinite}
+@keyframes shimmer{0%,100%{opacity:.75}50%{opacity:1;text-shadow:0 0 28px rgba(201,169,107,.35)}}
+
+@media(max-width:520px){
+ .screen{padding:20px 16px}
+ .doors{gap:7px}
+ .door{min-height:175px;padding:15px 7px}
+ .door-icon{font-size:38px}
+ .door-title{font-size:9px}
+ .mini{font-size:10px}
+ .gallery{gap:11px}
+ .openwhen{gap:9px}
+ .flip-card{height:145px}
+ .flip-front{font-size:18px;padding:12px}
 }
-
-.photo{
-    position:relative;
-    overflow:hidden;
-    background:#160d0f;
-    border:1px solid #332326;
-}
-
-.photo:nth-child(1){
-    transform:rotate(-1.2deg);
-}
-
-.photo:nth-child(2){
-    transform:rotate(1deg);
-}
-
-.photo:nth-child(3){
-    transform:rotate(1.1deg);
-}
-
-.photo:nth-child(4){
-    transform:rotate(-.8deg);
-}
-
-.photo img{
-    width:100%;
-    height:390px;
-    display:block;
-    object-fit:cover;
-    filter:saturate(.8);
-    transition:1s;
-}
-
-.photo:hover img{
-    transform:scale(1.05);
-    filter:saturate(1);
-}
-
-/* LETTER */
-
-.letter{
-    min-height:100vh;
-    padding:120px 25px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:
-      radial-gradient(circle at center,#281117,#0b0708 65%);
-}
-
-.letter h2{
-    font-size:62px;
-}
-
-.letter-card{
-    max-width:650px;
-    padding:50px 35px;
-    border:1px solid #49302b;
-    background:rgba(25,12,15,.65);
-    margin-top:25px;
-}
-
-.letter-card p{
-    color:#c5b5a9;
-    line-height:2;
-    font-family:'Cormorant Garamond',serif;
-    font-size:22px;
-}
-
-/* OPEN WHEN */
-
-.open{
-    padding:120px 25px;
-    background:#090607;
-    text-align:center;
-}
-
-.open h2{
-    font-size:58px;
-}
-
-.cards{
-    max-width:850px;
-    margin:55px auto 0;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.card{
-    min-height:170px;
-    border:1px solid #392426;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    cursor:pointer;
-    transition:.5s;
-    color:#bda78f;
-    letter-spacing:1px;
-    font-size:12px;
-}
-
-.card:hover{
-    border-color:#a9824d;
-    background:#160c0f;
-    transform:translateY(-5px);
-}
-
-/* END */
-
-.end{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:
-      radial-gradient(circle,#35151d 0%,#10080a 55%,#080607 100%);
-    padding:30px;
-}
-
-.end h2{
-    font-size:clamp(60px,12vw,110px);
-    color:#eee0d0;
-}
-
-.end p{
-    margin-top:25px;
-    color:#b5a399;
-    letter-spacing:2px;
-    font-size:11px;
-}
-
-footer{
-    padding:25px;
-    text-align:center;
-    background:#050405;
-    color:#665957;
-    font-size:9px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
-
-/* PARTICLES */
-
-.particle{
-    position:fixed;
-    width:2px;
-    height:2px;
-    background:#c5a36d;
-    border-radius:50%;
-    opacity:.5;
-    pointer-events:none;
-    animation:float 8s linear infinite;
-}
-
-@keyframes float{
-    from{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-    20%{opacity:.5}
-    80%{opacity:.3}
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@media(max-width:650px){
-
-    .gallery{
-        grid-template-columns:1fr;
-        max-width:430px;
-    }
-
-    .photo img{
-        height:480px;
-    }
-
-    .cards{
-        grid-template-columns:1fr;
-        max-width:400px;
-    }
-
-    .story h2,
-    .memories h2,
-    .open h2{
-        font-size:48px;
-    }
-
-    .letter h2{
-        font-size:52px;
-    }
+@media(max-height:700px){
+ .doors{margin:18px 0}
+ .door{min-height:145px}
+ .game-box{height:260px}
+ .gallery{margin:15px auto}
+ .photo-frame img{max-height:175px}
 }
 </style>
 </head>
-
 <body>
+<div id="app">
+  <div class="particles" id="particles"></div>
+  <button class="music" id="musicBtn" aria-label="Music">♫</button>
 
-<!-- PARTICLES -->
-<div class="particle" style="left:10%;animation-delay:0s"></div>
-<div class="particle" style="left:25%;animation-delay:2s"></div>
-<div class="particle" style="left:45%;animation-delay:4s"></div>
-<div class="particle" style="left:65%;animation-delay:1s"></div>
-<div class="particle" style="left:85%;animation-delay:3s"></div>
+  <section class="screen active" id="s1">
+    <div class="content">
+      <div class="eyebrow">A little something for you</div>
+      <h1>This isn't just<br>a birthday wish.</h1>
+      <p class="sub">It's something made for you.</p>
+      <button class="btn" style="margin-top:30px" onclick="go(2)">Enter →</button>
+    </div>
+  </section>
 
+  <section class="screen" id="s2">
+    <div class="content">
+      <div class="eyebrow">One question...</div>
+      <h2>Who is this little<br>world for?</h2>
+      <div class="input-wrap">
+        <input class="name-input" id="nameInput" autocomplete="off" placeholder="Type the name...">
+        <div class="error" id="nameError"></div>
+      </div>
+      <button class="btn" onclick="checkName()">Continue →</button>
+    </div>
+  </section>
 
-<!-- INTRO -->
-<section class="intro" id="top">
-
-    <div class="intro-content">
-
-        <div class="tiny">a little story</div>
-
-        <h1>Aalyan</h1>
-
-        <div class="goldline"></div>
-
-        <div class="sub">
-            made for one special person
-        </div>
-
-        <button class="enter"
-        onclick="document.getElementById('story').scrollIntoView()">
-            Enter the story
+  <section class="screen" id="s3">
+    <div class="content">
+      <div class="eyebrow">I knew you'd get it. ♡</div>
+      <h2>Choose one.</h2>
+      <p class="sub">Your story has three little doors.</p>
+      <div class="doors">
+        <button class="door" onclick="door(1)">
+          <span class="door-num">01</span><span class="door-icon">◇</span>
+          <span class="door-title">A MEMORY</span><span class="mini"></span>
         </button>
-
+        <button class="door" onclick="door(2)">
+          <span class="door-num">02</span><span class="door-icon">◈</span>
+          <span class="door-title">A SECRET</span><span class="mini"></span>
+        </button>
+        <button class="door" onclick="door(3)">
+          <span class="door-num">03</span><span class="door-icon">✦</span>
+          <span class="door-title">A LITTLE SURPRISE</span><span class="mini"></span>
+        </button>
+      </div>
     </div>
+  </section>
 
-</section>
-
-
-<!-- STORY -->
-<section class="story" id="story">
-
-    <div class="story-inner">
-
-        <div class="label">Chapter I</div>
-
-        <h2>Where it all begins</h2>
-
-        <div class="goldline"></div>
-
-        <p>
-            Some people enter our lives quietly,
-            and somehow become part of the stories
-            we never want to forget.
-            <br><br>
-            This is a little place for those moments.
-            A collection of memories, feelings,
-            smiles and everything that made this story
-            worth keeping.
-        </p>
-
+  <section class="screen" id="s4">
+    <div class="content">
+      <div class="eyebrow">You've unlocked something.</div>
+      <div class="envelope-wrap">
+        <div class="envelope" id="envelope">
+          <div class="letter">Some people become a beautiful part of your story without even trying.</div>
+          <div class="flap"></div><div class="seal">♡</div>
+        </div>
+      </div>
+      <p class="sub" id="envelopeMsg" style="opacity:.0">And you became one of mine. ♡</p>
+      <button class="btn" id="openEnvelope" onclick="openEnvelope()">Open it</button>
+      <button class="btn ghost" id="envNext" style="display:none;margin-top:12px" onclick="go(5)">Next →</button>
     </div>
+  </section>
 
-</section>
-
-
-<!-- MUSIC -->
-<section class="music">
-
-    <div class="label">our song</div>
-
-    <h2>Press play.</h2>
-
-    <div class="goldline"></div>
-
-    <div class="music-text">
-        and let the memories play with it.
+  <section class="screen" id="s5">
+    <div class="content">
+      <div class="eyebrow">Before the next surprise...</div>
+      <h2>Catch 5 stars.</h2>
+      <div class="score">CAUGHT <span id="starCount">0</span> / 5</div>
+      <div class="game-box" id="gameBox"></div>
+      <p class="sub" id="gameMsg">Tap the glowing stars as they appear.</p>
+      <button class="btn" id="gameNext" style="display:none" onclick="go(6)">Okay... you earned this. ♡</button>
     </div>
+  </section>
 
-    <button id="musicBtn" onclick="toggleMusic()">▶</button>
-
-    <audio id="song">
-        <source src="our-song.mp3" type="audio/mpeg">
-    </audio>
-
-</section>
-
-
-<!-- PHOTOS -->
-<section class="memories">
-
-    <div class="label">Chapter II</div>
-
-    <h2>Memories</h2>
-
-    <div class="goldline"></div>
-
-    <div class="gallery">
-
-        <div class="photo">
-            <img src="c70eef40b57087fd4fc4933ca1848abe.jpg">
-        </div>
-
-        <div class="photo">
-            <img src="97948dc91897534bc9a5f0c0ba32ec2e.jpg">
-        </div>
-
-        <div class="photo">
-            <img src="fee4884e791d4ba01cc3f57236cfcf92.jpg">
-        </div>
-
-        <div class="photo">
-            <img src="d802aa4cb5d98714194eccfc7a1db412.jpg">
-        </div>
-
+  <section class="screen" id="s6">
+    <div class="content">
+      <div class="gallery" id="gallery">
+        <div class="photo-frame"><img src="photo1.jpg" alt="Aesthetic photo 1" onerror="this.outerHTML='<div class=&quot;photo-placeholder&quot;>♡</div>'"></div>
+        <div class="photo-frame"><img src="photo2.jpg" alt="Aesthetic photo 2" onerror="this.outerHTML='<div class=&quot;photo-placeholder&quot;>☆</div>'"></div>
+        <div class="photo-frame"><img src="photo3.jpg" alt="Aesthetic photo 3" onerror="this.outerHTML='<div class=&quot;photo-placeholder&quot;>✦</div>'"></div>
+        <div class="photo-frame"><img src="photo4.jpg" alt="Aesthetic photo 4" onerror="this.outerHTML='<div class=&quot;photo-placeholder&quot;>♡</div>'"></div>
+      </div>
+      <button class="btn" onclick="go(7)">Continue →</button>
     </div>
+  </section>
 
-</section>
-
-
-<!-- LETTER -->
-<section class="letter">
-
-    <div class="label">Chapter III</div>
-
-    <h2>A little letter</h2>
-
-    <div class="goldline"></div>
-
-    <div class="letter-card">
-
-        <p>
-            Dear Aalyan,
-            <br><br>
-            Some things are difficult to put into words,
-            so I made this little place instead.
-            <br><br>
-            Four pictures, one song, a few memories
-            and a tiny piece of my heart.
-            <br><br>
-            I hope this little story reminds you
-            how special you are.
-            <br><br>
-            Happy Birthday. ♡
-        </p>
-
+  <section class="screen" id="s7">
+    <div class="content">
+      <div class="eyebrow">Open when...</div>
+      <p class="sub" style="margin-top:5px">Choose one. Just because you can.</p>
+      <div class="openwhen">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner">
+          <div class="flip-front">Open when you're smiling.</div><div class="flip-back">Keep that smile. It looks good on you. ♡</div>
+        </div></div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner">
+          <div class="flip-front">Open when you're curious.</div><div class="flip-back">I knew you'd open this one.</div>
+        </div></div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner">
+          <div class="flip-front">Open when you miss me.</div><div class="flip-back">Maybe this little message will make you smile.</div>
+        </div></div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')"><div class="flip-inner">
+          <div class="flip-front">Open the last one.</div><div class="flip-back">You made it all the way here.<br><br>There's still one last thing.</div>
+        </div></div>
+      </div>
+      <button class="btn" onclick="go(8)">One last thing →</button>
     </div>
+  </section>
 
-</section>
-
-
-<!-- OPEN WHEN -->
-<section class="open">
-
-    <div class="label">just because</div>
-
-    <h2>Open when...</h2>
-
-    <div class="goldline"></div>
-
-    <div class="cards">
-
-        <div class="card"
-        onclick="alert('Remember: even ordinary days can hold beautiful little moments. ♡')">
-            you need a smile
-        </div>
-
-        <div class="card"
-        onclick="alert('Take a breath. You have made it through every difficult day before this one. ♡')">
-            you need some peace
-        </div>
-
-        <div class="card"
-        onclick="alert('Some memories are worth keeping forever. This is one of them. ♡')">
-            you miss this story
-        </div>
-
+  <section class="screen final" id="s8">
+    <div class="content">
+      <div class="eyebrow shimmer">And now...</div>
+      <p class="sub" style="margin-top:8px">The actual reason you're here.</p>
+      <div style="height:28px"></div>
+      <h1 class="shimmer">Happy Birthday,<br>Aalyan.</h1>
+      <div class="final-love">Momina loves you so much ♡</div>
+      <div class="final-small">I hope this little world made you smile.</div>
+      <button class="btn replay" onclick="replay()">Replay Experience ↻</button>
     </div>
+  </section>
 
-</section>
-
-
-<!-- END -->
-<section class="end">
-
-    <div>
-
-        <div class="label">the end... or maybe not</div>
-
-        <h2>Happy Birthday,<br>Aalyan.</h2>
-
-        <div class="goldline"></div>
-
-        <p>
-            may your next chapter be beautiful.
-        </p>
-
+  <div class="modal" id="modal" onclick="closeModal(event)">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-card" id="modalCard">
+      <div class="eyebrow" id="modalEyebrow"></div>
+      <h2 id="modalTitle"></h2>
+      <p class="sub" id="modalText"></p>
+      <button class="btn" style="margin-top:25px" onclick="closeModal()">Next →</button>
     </div>
+  </div>
 
-</section>
+  <div class="progress" id="progress">
+    <i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+</div>
 
-
-<footer>
-    A little story made with love
-</footer>
-
+<audio id="music" src="our-song.mp3" loop preload="auto"></audio>
 
 <script>
+const screens=[...document.querySelectorAll('.screen')];
+const bars=[...document.querySelectorAll('.progress i')];
+let current=1;
+let musicStarted=false;
+let starsCaught=0;
+let starTimer=null;
 
-const song = document.getElementById("song");
-const btn = document.getElementById("musicBtn");
-
-function toggleMusic(){
-
-    if(song.paused){
-
-        song.play();
-
-        btn.innerHTML = "Ⅱ";
-
-    }else{
-
-        song.pause();
-
-        btn.innerHTML = "▶";
-
-    }
-
+function startMusic(){
+  if(musicStarted) return;
+  const m=document.getElementById('music');
+  m.play().then(()=>{musicStarted=true}).catch(()=>{});
 }
-
-song.addEventListener("ended", function(){
-    btn.innerHTML = "▶";
+document.addEventListener('click',startMusic,{once:true});
+document.getElementById('musicBtn').addEventListener('click',()=>{
+  const m=document.getElementById('music');
+  if(m.paused){m.play().catch(()=>{});document.getElementById('musicBtn').textContent='♫'}
+  else{m.pause();document.getElementById('musicBtn').textContent='♩'}
 });
 
-</script>
+function go(n){
+  startMusic();
+  screens[current-1].classList.remove('active');
+  current=n;
+  screens[current-1].classList.add('active');
+  bars.forEach((b,i)=>b.classList.toggle('on',i===current-1));
+  if(n===5) startGame();
+  if(n===6) prepareGallery();
+}
 
-</body>
-</html>
+function checkName(){
+  const val=document.getElementById('nameInput').value.trim().toLowerCase();
+  const err=document.getElementById('nameError');
+  if(val==='aalyan'){
+    err.textContent='';
+    go(3);
+  }else{
+    err.textContent='Hmm... try again.';
+    document.getElementById('nameInput').focus();
+  }
+}
+document.getElementById('nameInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkName()});
+
+const doorData={
+  1:{ey:'A MEMORY',title:'Some moments stay.',text:'Some moments are too beautiful to be forgotten.'},
+  2:{ey:'A SECRET',title:'Not everything is said.',text:'Not everything beautiful needs to be said out loud.'},
+  3:{ey:'A LITTLE SURPRISE',title:'Something is waiting.',text:"You might want to see what's waiting inside."}
+};
+function door(n){
+  const d=doorData[n];
+  document.getElementById('modalEyebrow').textContent=d.ey;
+  document.getElementById('modalTitle').textContent=d.title;
+  document.getElementById('modalText').textContent=d.text;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(e){
+  if(e && e.target!==document.getElementById('modal')) return;
+  document.getElementById('modal').classList.remove('show');
+  setTimeout(()=>go(4),300);
+}
+
+function openEnvelope(){
+  const env=document.getElementById('envelope');
+  env.classList.add('open');
+  document.getElementById('openEnvelope').style.display='none';
+  setTimeout(()=>{
+    const msg=document.getElementById('envelopeMsg');
+    msg.style.opacity='1';
+    document.getElementById('envNext').style.display='inline-block';
+  },1100);
+}
+
+function startGame(){
+  clearTimeout(starTimer);
+  starsCaught=0;
+  document.getElementById('starCount').textContent='0';
+  document.getElementById('gameMsg').textContent='Tap the glowing stars as they appear.';
+  document.getElementById('gameNext').style.display='none';
+  const box=document.getElementById('gameBox');
+  box.innerHTML='';
+  spawnStar();
+}
+function spawnStar(){
+  if(starsCaught>=5)return;
+  const box=document.getElementById('gameBox');
+  const star=document.createElement('button');
+  star.className='star';
+  star.textContent='✦';
+  const maxX=Math.max(10,box.clientWidth-40);
+  const maxY=Math.max(10,box.clientHeight-45);
+  star.style.left=(10+Math.random()*maxX)+'px';
+  star.style.top=(10+Math.random()*maxY)+'px';
+  star.onclick=()=>{
+    starsCaught++;
+    document.getElementById('starCount').textContent=starsCaught;
+    star.remove();
+    if(starsCaught<5){
+      document.getElementById('gameMsg').textContent='Almost there...';
+      spawnStar();
+    }else{
+      document.getElementById('gameMsg').textContent='Okay... you earned this. ♡';
+      document.getElementById('gameNext').style.display='inline-block';
+    }
+  };
+  box.appendChild(star);
+  starTimer=setTimeout(()=>{
+    if(document.body.contains(star)){
+      star.remove();
+      spawnStar();
+    }
+  },1800);
+}
+
+function prepareGallery(){
+  const photos=[
+    'c70eef40b57087fd4fc4933ca1848abe.jpg',
+    '97948dc91897534bc9a5f0c0ba32ec2e.jpg',
+    'fee4884e791d4ba01cc3f57236cfcf92.jpg',
+    'd802aa4cb5d98714194eccfc7a1db412.jpg'
+  ];
+
+  const imgs=document.querySelectorAll('#gallery img');
+
+  imgs.forEach((img,i)=>{
+    if(photos[i]){
+      img.src=photos[i];
+      img.onerror=function(){
+        this.outerHTML='<div class="photo-placeholder">♡</div>';
+      };
+    }
+  });
+}
+
+function replay(){
+  location.reload();
+}
+
+for(let i=0;i<45;i++){
+  const p=document.createElement('span');
+  p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.top=(20+Math.random()*80)+'%';
+  p.style.animationDelay=(Math.random()*5)+'s';
+  p.style.animationDuration=(4+Math.random()*4)+'s';
+  document.getElementById('particles').appendChild(p);
+}
+
+prepareGallery();
