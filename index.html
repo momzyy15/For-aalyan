@@ -311,13 +311,24 @@ document.getElementById('musicBtn').addEventListener('click',()=>{
   if(m.paused){m.play().catch(()=>{});document.getElementById('musicBtn').textContent='♫'}
   else{m.pause();document.getElementById('musicBtn').textContent='♩'}
 });
-
+  
 function go(n){
   startMusic();
-  screens[current-1].classList.remove('active');
+
+  const currentScreen=document.getElementById('s'+current);
+  const nextScreen=document.getElementById('s'+n);
+
+  if(!currentScreen || !nextScreen) return;
+
+  currentScreen.classList.remove('active');
+  nextScreen.classList.add('active');
+
   current=n;
-  screens[current-1].classList.add('active');
-  bars.forEach((b,i)=>b.classList.toggle('on',i===current-1));
+
+  bars.forEach((b,i)=>{
+    b.classList.toggle('on',i===current-1);
+  });
+
   if(n===5) startGame();
   if(n===6) prepareGallery();
 }
