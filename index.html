@@ -13,10 +13,14 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Georgia, serif;
-    background: #fff5f7;
-    color: #5a3b43;
+    background: #fff7f8;
+    color: #5d4149;
     text-align: center;
 }
 
@@ -27,85 +31,159 @@ body {
     justify-content: center;
     align-items: center;
     padding: 30px;
-    background: linear-gradient(135deg, #fff5f7, #f9dce5);
+    background: linear-gradient(135deg, #fff7f8, #f7dce5);
+}
+
+.heart {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: heartbeat 1.6s infinite;
 }
 
 .small {
-    font-size: 15px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    letter-spacing: 4px;
     text-transform: uppercase;
-    color: #a56b7b;
-    margin-bottom: 20px;
+    color: #a66d7d;
+    margin-bottom: 18px;
 }
 
 h1 {
-    font-size: 55px;
+    font-size: 58px;
     font-weight: normal;
     color: #7c4658;
     margin-bottom: 15px;
 }
 
 .subtitle {
-    font-size: 20px;
+    max-width: 500px;
+    font-size: 19px;
     font-style: italic;
-    margin-bottom: 35px;
-}
-
-.heart {
-    font-size: 45px;
-    margin-bottom: 25px;
-    animation: heartbeat 1.5s infinite;
+    line-height: 1.7;
+    margin-bottom: 32px;
 }
 
 button {
     border: none;
-    background: #9d6072;
+    background: #9b6072;
     color: white;
-    padding: 14px 30px;
+    padding: 14px 28px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     font-family: Georgia, serif;
-    box-shadow: 0 5px 15px #c99aa8;
+    box-shadow: 0 6px 18px rgba(120,70,90,0.2);
 }
 
 button:hover {
     background: #7c4658;
 }
 
+section {
+    padding: 80px 22px;
+}
+
 .story {
-    min-height: 100vh;
-    padding: 80px 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background: #fffafa;
 }
 
-.story h2 {
+h2 {
     font-size: 36px;
     font-weight: normal;
     color: #7c4658;
-    margin-bottom: 25px;
+    margin-bottom: 18px;
 }
 
-.story p {
+.line {
+    width: 65px;
+    height: 2px;
+    background: #c98b9b;
+    margin: 0 auto 30px;
+}
+
+.story-text {
     max-width: 650px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.music {
+    background: #f9e3e9;
+}
+
+.music p {
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+audio {
+    width: 90%;
+    max-width: 420px;
+}
+
+.memories {
+    background: #fffafa;
+}
+
+.gallery {
+    max-width: 900px;
+    margin: 35px auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 330px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(100,60,70,0.15);
+    transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.02);
+}
+
+.letter {
+    background: linear-gradient(135deg, #fff5f7, #f6d8e1);
+}
+
+.letter-box {
+    max-width: 650px;
+    margin: auto;
+    background: rgba(255,255,255,0.65);
+    padding: 35px 25px;
+    border-radius: 20px;
     line-height: 1.9;
     font-size: 17px;
 }
 
-.line {
-    width: 70px;
-    height: 2px;
-    background: #c98b9b;
+.birthday {
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f6d8e1;
+}
+
+.birthday h2 {
+    font-size: 42px;
+}
+
+.birthday p {
+    max-width: 550px;
+    line-height: 1.8;
     margin: 20px auto 30px;
 }
 
 footer {
     padding: 25px;
-    background: #f4d5dd;
+    background: #7c4658;
+    color: white;
     font-size: 14px;
 }
 
@@ -117,11 +195,31 @@ footer {
         transform: scale(1.15);
     }
 }
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 45px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery img {
+        height: 380px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- OPENING -->
 <section class="hero">
 
     <div class="heart">♡</div>
@@ -136,35 +234,121 @@ footer {
         Some people become a beautiful part of our story.
     </p>
 
-    <button onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">
+    <button onclick="document.getElementById('story').scrollIntoView()">
         Open Our Story ♡
     </button>
 
 </section>
 
 
+<!-- OUR STORY -->
 <section class="story" id="story">
 
     <h2>Our Story</h2>
 
     <div class="line"></div>
 
-    <p>
+    <p class="story-text">
         This little corner of the internet is made especially for you.
         <br><br>
-        Every memory, every smile, every little moment deserves a place
-        where it can stay forever.
+        Some memories are too precious to simply stay in our phones.
+        They deserve a little place of their own.
         <br><br>
-        So this is not just a birthday website...
-        <br>
-        it's a small collection of memories, feelings and moments
-        that make your story special.
+        So I made this small story...
+        just for you.
     </p>
 
-    <br><br>
+</section>
 
-    <button onclick="alert('There is still so much more to this story... ♡')">
-        There's More ♡
+
+<!-- MUSIC -->
+<section class="music">
+
+    <h2>A Song For You ♡</h2>
+
+    <div class="line"></div>
+
+    <p>Press play and let the story continue...</p>
+
+    <audio controls>
+        <source src="our-song.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+</section>
+
+
+<!-- MEMORIES -->
+<section class="memories">
+
+    <h2>Our Memories</h2>
+
+    <div class="line"></div>
+
+    <div class="gallery">
+
+        <img src="c70eef40b57087fd4fc4933ca1848abe.jpg" alt="Memory 1">
+
+        <img src="97948dc91897534bc9a5f0c0ba32ec2e.jpg" alt="Memory 2">
+
+        <img src="fee4884e791d4ba01cc3f57236cfcf92.jpg" alt="Memory 3">
+
+        <img src="d802aa4cb5d98714194eccfc7a1db412.jpg" alt="Memory 4">
+
+    </div>
+
+</section>
+
+
+<!-- LETTER -->
+<section class="letter">
+
+    <h2>A Little Letter ♡</h2>
+
+    <div class="line"></div>
+
+    <div class="letter-box">
+
+        <p>
+            Dear Aalyan,
+            <br><br>
+
+            Today is your day, but somehow I wanted to make
+            a little something that could stay with you beyond
+            just one birthday.
+            <br><br>
+
+            These pictures, these words and this little page
+            are just a tiny reminder that some moments become
+            memories we never want to forget.
+            <br><br>
+
+            I hope this year brings you happiness, peace,
+            beautiful moments and everything your heart wishes for.
+            <br><br>
+
+            Happy Birthday. ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ENDING -->
+<section class="birthday">
+
+    <div class="heart">♡</div>
+
+    <h2>Happy Birthday, Aalyan</h2>
+
+    <p>
+        Here's to another year of your story,
+        and to all the beautiful chapters still waiting to be written.
+    </p>
+
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        Back to the Beginning ♡
     </button>
 
 </section>
