@@ -364,17 +364,18 @@ function closeModal(e){
   setTimeout(()=>go(4),300);
 }
 
+
 function openEnvelope(){
   const env=document.getElementById('envelope');
+  const next=document.getElementById('envNext');
+
   env.classList.add('open');
   document.getElementById('openEnvelope').style.display='none';
+
   setTimeout(()=>{
-    const msg=document.getElementById('envelopeMsg');
-    msg.style.opacity='1';
-    document.getElementById('envNext').style.display='inline-block';
+    next.style.display='inline-block';
   },1100);
 }
-
 function startGame(){
   clearTimeout(starTimer);
   starsCaught=0;
