@@ -373,9 +373,10 @@ function openEnvelope(){
   document.getElementById('openEnvelope').style.display='none';
 
   setTimeout(()=>{
-    next.style.display='inline-block';
-  },1100);
-}
+  next.style.display='block';
+  next.style.visibility='visible';
+  next.style.opacity='1';
+},1100);
 function startGame(){
   clearTimeout(starTimer);
   starsCaught=0;
